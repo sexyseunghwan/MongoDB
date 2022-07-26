@@ -12,19 +12,19 @@ const MONGO_URI = 'mongodb+srv://seunghwanshin:Sh%40%23170125@mongodbtutorial.yr
 
 const server = async () => {
    try {
-    await mongoose.connect(MONGO_URI)
-    console.log('MongoDB connected')
-    app.use(express.json())//req 에서 정보를 받아올때 json 으로 받아오기 때문에 파싱오류가 발생하기 때문에 변환 함수를 써줘야 한다.(**)
+       await mongoose.connect(MONGO_URI)
+       console.log('MongoDB connected')
+       app.use(express.json())//req 에서 정보를 받아올때 json 으로 받아오기 때문에 파싱오류가 발생하기 때문에 변환 함수를 써줘야 한다.(**)
 
-    app.get('/user', async (req,res)=>{
-        //return res.send({ users: users})//중복호출방지를 위해 return 을 써준다.
-        try {
-            const users = await User.find({});
-            return res.send({ users })
-        } catch(err) {
-            console.log(err);
-            return res.status(500).send({err: err.message})
-        }
+       app.get('/user', async (req,res)=>{
+           //return res.send({ users: users})//중복호출방지를 위해 return 을 써준다.
+
+       const users = await User.find({});
+       return res.send({ users })
+       } catch(err) {
+         console.log(err);
+         return res.status(500).send({err: err.message})
+       }
     })
     
     app.get('/user/:userId', async(req,res)=>{
