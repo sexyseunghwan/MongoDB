@@ -1,4 +1,3 @@
-
 // vs code로 터미널을 열어줘서  node 파일이름.js 로 실행시켜줄 수 있다.
 
 //서버가 연결이 된것임
@@ -24,6 +23,7 @@ const server = async () => {
     //라우팅된 정보를 토대로 미들웨어 설정
     app.use('/user',userRouter);//url 이 user로 시작하면 userRouter 로 연결하라는 뜻이 된다.
 
+
     //서버포트 설정
     app.listen(3000,()=>{
         console.log('server listen on port 3000');
@@ -34,8 +34,3 @@ const server = async () => {
 }
 
 server();//서버 생성
-
-
-
-
-
