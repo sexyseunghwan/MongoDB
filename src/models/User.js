@@ -1,6 +1,7 @@
 //const mongoose = require('mongoose');
 const {Schema,model} = require('mongoose');
 
+
 const UserSchema = new Schema({
     username: {type:String, required:true, unique: true},//unique 를 통해 중복을 제어할 수 있다.
     name : {

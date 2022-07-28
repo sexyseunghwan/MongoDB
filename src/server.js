@@ -6,6 +6,7 @@ const app = express();
 
 const { userRouter } = require('./routes/userRoutes')// 라우팅 된 정보를 받아온다.
 const { blogRouter } = require('./routes/blogRoutes')// 라우팅 된 정보를 받아온다.
+const { commentRouter } = require('./routes/commentRoute')// 라우팅 된 정보를 받아온다.
 
 const mongoose = require('mongoose');
 //const { User } = require('./models/User') -> 라우팅으로 연결을 해주면 이 정보는 더이상 필요 없어진다.
@@ -24,6 +25,7 @@ const server = async () => {
     //라우팅된 정보를 토대로 미들웨어 설정
     app.use('/user',userRouter);//url 이 user로 시작하면 userRouter 로 연결하라는 뜻이 된다.
     app.use('/blog',blogRouter);//url 이 blog로 시작하면 userRouter 로 연결하라는 뜻이 된다.
+    app.use('/blog/:blogId/comment',commentRouter);//url 이 comment로 시작하면 userRouter 로 연결하라는 뜻이 된다.
 
 
     //서버포트 설정
