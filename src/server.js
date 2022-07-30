@@ -12,6 +12,7 @@ const mongoose = require('mongoose');
 //const { User } = require('./models/User') -> 라우팅으로 연결을 해주면 이 정보는 더이상 필요 없어진다.
 
 
+
 const MONGO_URI = 'mongodb+srv://seunghwanshin:Sh%40%23170125@mongodbtutorial.yr66m.mongodb.net/test';
 
 const server = async () => {
