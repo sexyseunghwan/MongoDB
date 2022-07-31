@@ -4,14 +4,16 @@
 const express = require('express');
 const app = express();
 
-const { userRouter } = require('./routes/userRoutes')// 라우팅 된 정보를 받아온다.
-const { blogRouter } = require('./routes/blogRoutes')// 라우팅 된 정보를 받아온다.
-const { commentRouter } = require('./routes/commentRoute')// 라우팅 된 정보를 받아온다.
+//인덱스 js 에 합쳐놓음
+//const { userRouter } = require('./routes/userRoutes')// 라우팅 된 정보를 받아온다.
+//const { blogRouter } = require('./routes/blogRoutes')// 라우팅 된 정보를 받아온다.
+//const { commentRouter } = require('./routes/commentRoute')// 라우팅 된 정보를 받아온다.
+
+//=> 합치면 아래와 같이 된다.
+const {blogRouter,commentRouter,userRouter} = require('./routes');
 
 const mongoose = require('mongoose');
 //const { User } = require('./models/User') -> 라우팅으로 연결을 해주면 이 정보는 더이상 필요 없어진다.
-
-
 
 const MONGO_URI = 'mongodb+srv://seunghwanshin:Sh%40%23170125@mongodbtutorial.yr66m.mongodb.net/test';
 

@@ -1,7 +1,10 @@
 const { Router } = require('express');
 const blogRouter = Router();
-const { Blog } = require('../models/Blog');
-const { User } = require('../models/User');
+//const { Blog } = require('../models/Blog');
+//const { User } = require('../models/User');
+//위의 두개를 하나의 인덱스로 엮음
+const {Blog,User} = require('../models')
+
 const {isValidObjectId} = require('mongoose');
 
 blogRouter.post('/',async(req,res)=>{
@@ -9,14 +12,14 @@ blogRouter.post('/',async(req,res)=>{
 
         const { title, content, islive, userId} = req.body
 
-        if (typeof title !== 'string') res.status(400).send({err: "title is required"});
-        if (typeof content !== 'string') res.status(400).send({err: "content is required"});
-        if (islive && islive !== 'boolean') res.status(400).send({err: "islive is required"});
-        if (!isValidObjectId(userId)) res.status(400).send({err: "userId is invalid"});
+        if (typeof title !== 'string') return res.status(400).send({err: "title is required"});
+        if (typeof content !== 'string') return res.status(400).send({err: "content is required"});
+        if (islive && islive !== 'boolean') return res.status(400).send({err: "islive is required"});
+        if (!isValidObjectId(userId)) return res.status(400).send({err: "userId is invalid"});
 
         //유저가 존재하는지 검증
         let user = await User.findById(userId);
-        if (!user) res.status(400).send({err: "user does not exists"});
+        if (!user) return res.status(400).send({err: "user does not exists"});
         
         console.log(user);
 
@@ -45,7 +48,7 @@ blogRouter.get('/:blogId',async(req,res)=>{
     try {
         const { blogId } = req.params;
 
-        if(!isValidObjectId(blogId)) res.status(400).send({err: "blogId is invalid"});
+        if(!isValidObjectId(blogId)) return res.status(400).send({err: "blogId is invalid"});
 
         const blog = await Blog.findOne({_id: blogId});
         res.send({blog});
@@ -61,12 +64,12 @@ blogRouter.put('/:blogId',async(req,res)=>{
     try {
 
         const {blogId} = req.params;
-        if(!isValidObjectId(blogId)) res.status(400).send({err: "blogId is invalid"});
+        if(!isValidObjectId(blogId)) return res.status(400).send({err: "blogId is invalid"});
 
         const {title,content} = req.body;
 
-        if (typeof title !== 'string') res.status(400).send({err: "title is required"});
-        if (typeof content !== 'string') res.status(400).send({err: "content is required"});
+        if (typeof title !== 'string') return res.status(400).send({err: "title is required"});
+        if (typeof content !== 'string') return res.status(400).send({err: "content is required"});
 
         const blog = await Blog.findByIdAndUpdate({_id: blogId},{ title, content},{new : true});
 
@@ -83,10 +86,10 @@ blogRouter.patch('/:blogId/live',async(req,res)=>{
     try {
         
         const {blogId} = req.params;
-        if(!isValidObjectId(blogId)) res.status(400).send({err: "blogId is invalid"});
+        if(!isValidObjectId(blogId)) return res.status(400).send({err: "blogId is invalid"});
 
         const { islive } = req.body;
-        if (typeof islive !== 'boolean') res.status(400).send({err: "boolean islive is required"});
+        if (typeof islive !== 'boolean') return res.status(400).send({err: "boolean islive is required"});
 
         const blog = await Blog.findByIdAndUpdate(blogId,{ islive },{new : true})
 
