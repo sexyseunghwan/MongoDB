@@ -5,8 +5,8 @@ const commentRouter = Router({ mergeParams: true });//이걸 true 로 해주면 
 //const {Blog} = require('../models/Blog');
 //const {User} = require('../models/User');
 //위의 세개를 하나의 인덱스로 엮음
-
 const {Blog,Comment,User} = require('../models')
+
 const {isValidObjectId} = require('mongoose');
 
 
