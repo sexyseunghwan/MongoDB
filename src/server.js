@@ -9,6 +9,8 @@ const app = express();
 //const { blogRouter } = require('./routes/blogRoutes')// 라우팅 된 정보를 받아온다.
 //const { commentRouter } = require('./routes/commentRoute')// 라우팅 된 정보를 받아온다.
 
+
+
 //=> 합치면 아래와 같이 된다.
 const {blogRouter,commentRouter,userRouter} = require('./routes');
 
